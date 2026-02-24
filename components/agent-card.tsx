@@ -58,11 +58,6 @@ export function AgentCard({ agent, meta }: AgentCardProps) {
 
       {/* Description */}
       <p className="text-sm text-muted-foreground mb-4 flex-1">{agent.description}</p>
-
-      {/* Action Button */}
-      <button className="w-full px-3 py-2 bg-muted/40 hover:bg-muted text-muted-foreground hover:text-foreground border border-border rounded-lg text-sm transition-all duration-200">
-        Get Started
-      </button>
     </div>
   );
 }
