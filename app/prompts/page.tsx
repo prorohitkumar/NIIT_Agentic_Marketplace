@@ -93,30 +93,31 @@ export default function PromptsPage() {
 
         {/* Category Filter */}
         <div className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-1">
-          <button
-            onClick={() => setSelectedCategory(null)}
-            className={`px-4 py-2 rounded-lg transition-all duration-200 ${
-              selectedCategory === null
-                ? 'bg-primary text-primary-foreground'
-                : 'bg-muted/50 text-muted-foreground hover:bg-muted'
-            }`}
-          >
-            All Use Cases
-          </button>
-          {categories.map(category => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-lg transition-all duration-200 ${
-                selectedCategory === category
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-muted/50 text-muted-foreground hover:bg-muted'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+  <button
+    onClick={() => setSelectedCategory(null)}
+    className={`h-12 min-w-[140px] px-4 flex items-center justify-center text-center rounded-lg transition-all duration-200 whitespace-normal leading-tight ${
+      selectedCategory === null
+        ? 'bg-primary text-primary-foreground'
+        : 'bg-muted/50 text-muted-foreground hover:bg-muted'
+    }`}
+  >
+    All Use Cases
+  </button>
+
+  {categories.map(category => (
+    <button
+      key={category}
+      onClick={() => setSelectedCategory(category)}
+      className={`h-12 min-w-[140px] px-4 flex items-center justify-center text-center rounded-lg transition-all duration-200 whitespace-normal leading-tight ${
+        selectedCategory === category
+          ? 'bg-primary text-primary-foreground'
+          : 'bg-muted/50 text-muted-foreground hover:bg-muted'
+      }`}
+    >
+      {category}
+    </button>
+  ))}
+</div>
       </section>
 
       {/* Prompts Grid */}

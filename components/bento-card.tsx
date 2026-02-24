@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 interface BentoCardProps {
   icon: string;
   title: string;
@@ -8,6 +10,7 @@ interface BentoCardProps {
   gradient?: string;
   ctaLabel?: string;
   ctaDisabled?: boolean;
+  href?: string; // NEW
 }
 
 export function BentoCard({
@@ -18,10 +21,25 @@ export function BentoCard({
   gradient = 'from-primary/20 to-purple-500/20',
   ctaLabel = 'Learn More →',
   ctaDisabled = false,
+  href,
 }: BentoCardProps) {
+  const ButtonContent = (
+    <button
+      type="button"
+      disabled={ctaDisabled}
+      className={`mt-4 px-3 py-2 border border-border rounded-lg text-sm transition-all duration-200 ${
+        ctaDisabled
+          ? 'bg-muted/40 text-muted-foreground/80 cursor-not-allowed'
+          : 'bg-muted/50 hover:bg-muted text-muted-foreground hover:text-foreground'
+      }`}
+    >
+      {ctaLabel}
+    </button>
+  );
+
   return (
     <div
-      className={`glass rounded-lg transition-all duration-300 hover:bg-card/80 p-6 flex flex-col justify-between h-full cursor-pointer group ${className}`}
+      className={`glass rounded-lg transition-all duration-300 hover:bg-card/80 p-6 flex flex-col justify-between h-full group ${className}`}
     >
       <div>
         <div className={`inline-block p-3 rounded-lg bg-gradient-to-br ${gradient} mb-4 group-hover:scale-110 transition-transform duration-300`}>
@@ -31,17 +49,11 @@ export function BentoCard({
         <p className="text-sm text-muted-foreground">{description}</p>
       </div>
 
-      <button
-        type="button"
-        disabled={ctaDisabled}
-        className={`mt-4 px-3 py-2 border border-border rounded-lg text-sm transition-all duration-200 ${
-          ctaDisabled
-            ? 'bg-muted/40 text-muted-foreground/80 cursor-not-allowed'
-            : 'bg-muted/50 hover:bg-muted text-muted-foreground hover:text-foreground'
-        }`}
-      >
-        {ctaLabel}
-      </button>
+      {ctaDisabled || !href ? (
+        ButtonContent
+      ) : (
+        <Link href={href}>{ButtonContent}</Link>
+      )}
     </div>
   );
 }
