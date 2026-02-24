@@ -3,7 +3,9 @@ export type Prompt = {
   name: string;
   category: string;
   description: string;
-  detailedDescription: string;
+  testPrompt: string;
+  dataRequirement: string;
+  sourceOutputs: string;
   icon: string;
   tags: string[];
   author?: string;

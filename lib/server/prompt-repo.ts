@@ -25,6 +25,14 @@ function truncate(s: string, maxLen: number): string {
   return `${s.slice(0, Math.max(0, maxLen - 1)).trimEnd()}…`;
 }
 
+function getRowText(row: Record<string, unknown>, keys: string[]): string {
+  for (const k of keys) {
+    const v = toText(row[k]).trim();
+    if (v) return v;
+  }
+  return '';
+}
+
 function slugifyTag(s: string): string {
   const t = normalizeWhitespace(s).toLowerCase();
   if (!t) return '';
@@ -70,7 +78,7 @@ function groupFunctionCategory(raw: string): string {
 function rowToPrompt(row: Record<string, unknown>, index: number): Prompt {
   const usage = normalizeWhitespace(toText(row['Usage']));
   const descriptionLong = normalizeWhitespace(toText(row['Description']));
-  const testPrompt = toText(row['Test Prompt']).trim();
+  const testPrompt = getRowText(row, ['Test Prompt', 'Test prompt', 'TestPrompt']);
   const functionRaw = normalizeWhitespace(toText(row['Function']));
   const category = groupFunctionCategory(functionRaw);
 
@@ -79,18 +87,14 @@ function rowToPrompt(row: Record<string, unknown>, index: number): Prompt {
     truncate(descriptionLong || usage || normalizeWhitespace(toText(row['Target Group'])), 160) ||
     '—';
 
-  const detailedDescription = [
-    descriptionLong || usage,
-    testPrompt ? `Test Prompt:\n${truncate(testPrompt, 900)}` : '',
-    normalizeWhitespace(toText(row['Data Requirement']))
-      ? `Data requirement:\n${toText(row['Data Requirement']).trim()}`
-      : '',
-    normalizeWhitespace(toText(row['Sources/ Outputs']))
-      ? `Sources / outputs:\n${toText(row['Sources/ Outputs']).trim()}`
-      : '',
-  ]
-    .filter(Boolean)
-    .join('\n\n');
+  const dataRequirement = getRowText(row, ['Data Requirement', 'Data requirement', 'DataRequirement']);
+  const sourceOutputs = getRowText(row, [
+    'Sources/ Outputs',
+    'Sources/Outputs',
+    'Sources / Outputs',
+    'Source Outputs',
+    'sourceOutputs',
+  ]);
 
   const industry = normalizeWhitespace(toText(row['Industry']));
   const promptType = normalizeWhitespace(toText(row['Prompt Type']));
@@ -114,7 +118,9 @@ function rowToPrompt(row: Record<string, unknown>, index: number): Prompt {
     name,
     category,
     description,
-    detailedDescription: truncate(detailedDescription, 2400),
+    testPrompt: truncate(testPrompt, 4000),
+    dataRequirement: truncate(dataRequirement, 2400),
+    sourceOutputs: truncate(sourceOutputs, 2400),
     icon: pickIcon(category, industry),
     tags,
     author,
@@ -139,7 +145,11 @@ export async function getPromptsFromXlsx(): Promise<Prompt[]> {
 
   const prompts = rows
     .map((row, idx) => rowToPrompt(row, idx))
-    .filter(p => p.name !== '—' && p.detailedDescription.trim().length > 0);
+    .filter(p => {
+      if (p.name === '—') return false;
+      const fields = [p.description, p.testPrompt, p.dataRequirement, p.sourceOutputs];
+      return fields.some(s => s.trim().length > 0 && s.trim() !== '—');
+    });
 
   cache = { mtimeMs: stat.mtimeMs, prompts };
   return prompts;
