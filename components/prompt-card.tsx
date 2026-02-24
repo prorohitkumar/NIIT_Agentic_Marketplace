@@ -58,30 +58,54 @@ export function PromptCard({ prompt }: PromptCardProps) {
       <DialogTrigger asChild>
         <button
           type="button"
-          className="glass self-start w-full text-left rounded-lg transition-all duration-300 hover:bg-card/80 p-6"
+          className="glass w-full text-left rounded-lg transition-all duration-300 hover:bg-card/80 p-6 flex flex-col justify-between h-full"
           aria-label={`Open details for ${prompt.name}`}
         >
-          <div className="flex items-start justify-between gap-4 mb-3">
-            <div className="flex items-start gap-4 flex-1">
-              <span className="text-2xl leading-none">{prompt.icon}</span>
-              <div className="flex-1">
-                <h3 className="text-base font-semibold text-foreground mb-1">{prompt.name}</h3>
-                <p className="text-sm text-muted-foreground">{prompt.description}</p>
+          {/* Top Content */}
+          <div className="flex-1">
+            <div className="flex items-start justify-between gap-4 mb-3">
+              <div className="flex items-start gap-4 flex-1">
+                <span className="text-2xl leading-none">{prompt.icon}</span>
+                <div className="flex-1">
+                  <h3 className="text-base font-semibold text-foreground mb-1">
+                    {prompt.name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {prompt.description}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-2">
-            <span className="inline-block px-2 py-1 text-xs font-medium bg-muted/70 text-foreground rounded border border-border">
-              {prompt.category}
-            </span>
-            {prompt.tags.slice(0, 2).map(tag => (
-              <span key={tag} className="inline-block px-2 py-1 text-xs text-muted-foreground bg-muted/50 rounded border border-border">
-                {tag}
-              </span>
-            ))}
-          </div>
+          <div className="flex flex-wrap gap-2 mt-4">
+  {/* Category */}
+  <span className="inline-block px-2 py-1 text-xs font-medium bg-muted/70 text-foreground rounded border border-border">
+    {prompt.category.charAt(0).toUpperCase() + prompt.category.slice(1).toLowerCase()}
+  </span>
+
+  {/* Cleaned Tags */}
+  {Array.from(
+    new Map(
+      prompt.tags
+        .filter(
+          tag => tag.toLowerCase() !== prompt.category.toLowerCase()
+        )
+        .map(tag => [tag.toLowerCase(), tag])
+    ).values()
+  )
+  .slice(0, 2)
+  .map(tag => (
+    <span
+      key={tag}
+      className="inline-block px-2 py-1 text-xs text-muted-foreground bg-muted/50 rounded border border-border"
+    >
+      {tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()}
+    </span>
+  ))}
+</div>
+      
         </button>
       </DialogTrigger>
 
@@ -107,7 +131,11 @@ export function PromptCard({ prompt }: PromptCardProps) {
                   className="inline-flex items-center gap-2 px-3 py-1.5 text-xs rounded-md border border-border bg-muted/40 hover:bg-muted/60 transition-colors"
                   aria-label="Copy test prompt to clipboard"
                 >
-                  {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                  {copied ? (
+                    <Check className="w-3.5 h-3.5" />
+                  ) : (
+                    <Copy className="w-3.5 h-3.5" />
+                  )}
                   <span>{copied ? 'Copied' : 'Copy'}</span>
                 </button>
               </div>
