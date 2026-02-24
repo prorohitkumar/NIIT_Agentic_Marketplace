@@ -32,7 +32,7 @@ export default async function Home() {
               </h1>
 
               <p className="text-lg text-white/80 max-w-2xl mb-8">
-                Discover reusable prompts, production-ready workflows, and specialized agents—designed for teams shipping real automation.
+                Discover reusable use cases, production-ready workflows, and specialized agents—designed for teams shipping real automation.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center sm:items-start justify-start gap-4">
@@ -40,7 +40,7 @@ export default async function Home() {
                   href="/prompts"
                   className="px-8 py-3 rounded-lg font-semibold transition-all duration-200 text-white bg-gradient-to-r from-primary via-fuchsia-500 to-cyan-400 hover:to-cyan-300 shadow-lg shadow-primary/20"
                 >
-                  Explore Prompts
+                  Explore Use Cases
                 </Link>
                 <Link
                   href="/workflows"
@@ -53,7 +53,7 @@ export default async function Home() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/20 px-4 py-2 text-sm text-white/85">
                   <span className="text-cyan-300">✨</span>
-                  {promptsCount} prompts
+                  {promptsCount} use cases
                 </div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/20 px-4 py-2 text-sm text-white/85">
                   <span className="text-purple-300">⚙️</span>
@@ -74,7 +74,7 @@ export default async function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
           <div className="glass p-6 rounded-lg text-center">
             <p className="text-3xl font-bold text-primary">{promptsCount}</p>
-            <p className="text-muted-foreground mt-2">Pre-built Prompts</p>
+            <p className="text-muted-foreground mt-2">Pre-built Use Cases</p>
           </div>
           <div className="glass p-6 rounded-lg text-center">
             <p className="text-3xl font-bold text-purple-500">{workflowsCount}</p>
@@ -90,8 +90,8 @@ export default async function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           <BentoCard
             icon="🏷️"
-            title="AI Prompts"
-            description="Pre-designed prompts for classification, analysis, and content generation tasks"
+            title="AI Use Cases"
+            description="Pre-designed use cases for classification, analysis, and content generation tasks"
             className="lg:col-span-1"
             gradient="from-primary/20 to-cyan-500/20"
           />
@@ -168,7 +168,7 @@ export default async function Home() {
               <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="rounded-xl border border-border bg-background/35 p-4">
                   <p className="text-sm text-muted-foreground">Recommended</p>
-                  <p className="mt-1 font-semibold text-foreground">Start with prompts</p>
+                  <p className="mt-1 font-semibold text-foreground">Start with use cases</p>
                   <p className="mt-2 text-sm text-muted-foreground">Copy, tailor, and reuse patterns across teams.</p>
                 </div>
                 <div className="rounded-xl border border-border bg-background/35 p-4">
@@ -219,7 +219,7 @@ export default async function Home() {
                     href="/prompts"
                     className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-2 text-sm font-medium text-foreground hover:bg-card transition-colors"
                   >
-                    ✨ Prompts
+                    ✨ Use Cases
                   </Link>
                   <Link
                     href="/workflows"

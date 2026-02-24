@@ -22,14 +22,14 @@ export default function PromptsPage() {
         setLoadError(null);
         const res = await fetch('/api/prompts');
         if (!res.ok) {
-          throw new Error(`Failed to load prompts (${res.status})`);
+          throw new Error(`Failed to load use cases (${res.status})`);
         }
         const data = (await res.json()) as { prompts?: Prompt[]; error?: string; message?: string };
         if (cancelled) return;
         setPrompts(Array.isArray(data.prompts) ? data.prompts : []);
       } catch (e) {
         if (cancelled) return;
-        setLoadError(e instanceof Error ? e.message : 'Failed to load prompts');
+        setLoadError(e instanceof Error ? e.message : 'Failed to load use cases');
         setPrompts([]);
       } finally {
         if (!cancelled) setLoading(false);
@@ -71,8 +71,8 @@ export default function PromptsPage() {
 
       {/* Header */}
       <section className="w-full px-4 sm:px-6 lg:px-10 xl:px-14 py-12">
-        <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">AI Prompts</h1>
-        <p className="text-muted-foreground">Explore pre-designed prompts for your enterprise workflows</p>
+        <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">AI Use Cases</h1>
+        <p className="text-muted-foreground">Explore pre-designed use cases for your enterprise workflows</p>
       </section>
 
       {/* Filters Section */}
@@ -83,7 +83,7 @@ export default function PromptsPage() {
             <Search className="absolute left-4 top-3 w-5 h-5 text-muted-foreground" />
             <input
               type="text"
-              placeholder="Search prompts by name, description, or tags..."
+              placeholder="Search use cases by name, description, or tags..."
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
               className="w-full pl-12 pr-4 py-3 bg-card/70 border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors duration-200"
@@ -101,7 +101,7 @@ export default function PromptsPage() {
                 : 'bg-muted/50 text-muted-foreground hover:bg-muted'
             }`}
           >
-            All Prompts
+            All Use Cases
           </button>
           {categories.map(category => (
             <button
@@ -137,7 +137,7 @@ export default function PromptsPage() {
           </div>
         ) : loadError ? (
           <div className="glass p-12 rounded-lg text-center">
-            <p className="text-foreground text-lg font-medium mb-2">Couldn’t load prompts</p>
+            <p className="text-foreground text-lg font-medium mb-2">Couldn’t load use cases</p>
             <p className="text-muted-foreground">{loadError}</p>
           </div>
         ) : filteredPrompts.length > 0 ? (
@@ -148,7 +148,7 @@ export default function PromptsPage() {
           </div>
         ) : (
           <div className="glass p-12 rounded-lg text-center">
-            <p className="text-muted-foreground text-lg">No prompts found matching your criteria</p>
+            <p className="text-muted-foreground text-lg">No use cases found matching your criteria</p>
             <button
               onClick={() => {
                 setSearchQuery('');

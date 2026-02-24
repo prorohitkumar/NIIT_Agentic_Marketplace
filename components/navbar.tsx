@@ -18,7 +18,7 @@ export function Navbar() {
 
   const links = [
     { href: '/', label: 'Home' },
-    { href: '/prompts', label: 'Prompts' },
+    { href: '/prompts', label: 'Use Cases' },
     { href: '/workflows', label: 'Workflows' },
     { href: '/agents', label: 'Agents' },
     { href: '/simulations', label: 'Simulations' },
