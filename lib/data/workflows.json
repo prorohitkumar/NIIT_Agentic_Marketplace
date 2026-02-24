@@ -1,0 +1,29 @@
+[
+  {
+    "id": "lead-gen",
+    "name": "Lead Generation System",
+    "problemStatement": "Automates business listing extraction from Google Maps and converts them into verified email leads.",
+    "department": "Sales & Marketing",
+    "overview": "This automated lead generation workflow extracts business listings from Google Maps, processes website URLs, scrapes emails directly from company websites, and exports clean, verified leads to Google Sheets.",
+    "architectureImage": "/workflows/lead_generation.png",
+    "techStack": ["n8n", "Google Maps Scraper", "JavaScript Regex", "Google Sheets API"]
+  },
+  {
+    "id": "inventory",
+    "name": "Inventory ABC & Pareto Analysis",
+    "problemStatement": "Performs automated ABC classification and demand analysis for optimized inventory management.",
+    "department": "Supply Chain & Operations",
+    "overview": "This automated workflow analyzes transactional sales data from Google Sheets to perform ABC classification, Pareto analysis, multi-store sales breakdown, and demand variability assessment for effective inventory management.",
+    "architectureImage": "/workflows/inventory_analysis.png",
+    "techStack": ["Google Sheets", "Pareto Analysis Logic", "ABC Classification", "Demand Variability Models"]
+  },
+  {
+    "id": "interior-design",
+    "name": "Interior Design Lead Qualification",
+    "problemStatement": "Automates lead scoring, drafting, and approval workflow with AI & human validation.",
+    "department": "Sales & Marketing",
+    "overview": "This intelligent workflow automates the qualification, scoring, email drafting, and approval process for interior design leads — combining AI-powered decision-making with human-in-the-loop validation before final client communication and structured storage in Notion.",
+    "architectureImage": "/workflows/interior_design.png",
+    "techStack": ["AI Scoring Model", "Human-in-the-loop Review", "Automated Email Drafting", "Notion API"]
+  }
+]

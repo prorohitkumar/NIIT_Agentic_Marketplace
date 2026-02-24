@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "name": "Interior Design Lead Classification",
+    "category": "Classification",
+    "description": "Intelligent qualification system that analyzes and classifies interior design leads with complete lead profiles.",
+    "detailedDescription": "This intelligent qualification system analyzes and classifies interior design leads into priority tiers. It processes lead data and provides precise profiles based on multiple validation criteria, detailed qualification metrics, and recommended actions.",
+    "icon": "🏠",
+    "tags": ["classification", "lead-scoring", "interior-design"],
+    "author": "NIIT Platform",
+    "rating": 4.8,
+    "uses": 1250,
+    "updatedAt": "2024-02-15"
+  },
+  {
+    "id": 2,
+    "name": "Email Classification & Routing",
+    "category": "Classification",
+    "description": "Multi-agent email processing system with intelligent routing and response generation.",
+    "detailedDescription": "Advanced email classification and routing system powered by multiple AI agents. Analyzes incoming emails, classifies them by intent and priority, routes to appropriate handlers, and generates contextual responses.",
+    "icon": "✉️",
+    "tags": ["email", "classification", "routing", "agents"],
+    "author": "NIIT Platform",
+    "rating": 4.9,
+    "uses": 2840,
+    "updatedAt": "2024-02-14"
+  },
+  {
+    "id": 3,
+    "name": "Inventory & Sales Analytics",
+    "category": "Analytics",
+    "description": "Comprehensive sales analysis workflow with multi-store data aggregation and insights.",
+    "detailedDescription": "Complete inventory and sales analytics system that aggregates data from multiple stores, performs ABC classification, analyzes demand variability, and generates actionable insights with automated reporting.",
+    "icon": "📊",
+    "tags": ["analytics", "inventory", "sales", "reporting"],
+    "author": "NIIT Platform",
+    "rating": 4.7,
+    "uses": 1890,
+    "updatedAt": "2024-02-13"
+  },
+  {
+    "id": 4,
+    "name": "Lead Generation & Web Scraping",
+    "category": "Data Collection",
+    "description": "Smart web scraping workflow for business lead extraction with email validation.",
+    "detailedDescription": "Sophisticated lead generation system that scrapes business listings from Google Maps, extracts and validates email addresses, performs duplicate removal, and prepares clean lead datasets for outreach.",
+    "icon": "🔍",
+    "tags": ["lead-generation", "web-scraping", "email-extraction"],
+    "author": "NIIT Platform",
+    "rating": 4.6,
+    "uses": 1560,
+    "updatedAt": "2024-02-12"
+  },
+  {
+    "id": 5,
+    "name": "Customer Sentiment Analysis",
+    "category": "Analysis",
+    "description": "Real-time sentiment analysis for customer feedback and reviews.",
+    "detailedDescription": "Analyzes customer feedback, reviews, and support tickets to extract sentiment, identify trends, and prioritize issues for resolution.",
+    "icon": "💬",
+    "tags": ["sentiment", "analysis", "customer-feedback"],
+    "author": "NIIT Platform",
+    "rating": 4.5,
+    "uses": 980,
+    "updatedAt": "2024-02-11"
+  },
+  {
+    "id": 6,
+    "name": "Content Generation & Optimization",
+    "category": "Content",
+    "description": "AI-powered content creation and SEO optimization.",
+    "detailedDescription": "Generates optimized content for marketing campaigns, social media, and web pages with built-in SEO recommendations and A/B testing capabilities.",
+    "icon": "✍️",
+    "tags": ["content", "seo", "marketing"],
+    "author": "NIIT Platform",
+    "rating": 4.8,
+    "uses": 2150,
+    "updatedAt": "2024-02-10"
+  }
+]

@@ -1,0 +1,21 @@
+[
+  { "id": 1, "name": "Product Navigator", "description": "Helps teams quickly access structured product knowledge without manually searching across documents or systems. Supports faster information access and decision support." },
+  { "id": 2, "name": "Call Audit", "description": "Reviews and analyzes call conversations automatically. Evaluates call quality, compliance, and PA performance using dashboards and insights." },
+  { "id": 3, "name": "Sales Pitch", "description": "Creates and stores customized sales pitches based on lead information, improving preparation speed and consistency for the Sales team." },
+  { "id": 4, "name": "Content Crafter", "description": "AI-powered platform used internally to create educational content, training materials, and assessments. Supports content and learning teams." },
+  { "id": 5, "name": "Class Of One", "description": "Internal AI tutor platform providing personalized one-on-one learning support with instant feedback and grading assistance." },
+  { "id": 6, "name": "HDFC Dashboard", "description": "Tracks and visualizes the lead funnel using performance metrics, dashboards, and natural language reporting. Built for BFSI usage." },
+  { "id": 7, "name": "VEDA", "description": "Internal AI platform supporting domain-specific automation and knowledge workflows." },
+  { "id": 8, "name": "Tax Reply", "description": "Automates structured tax-related query drafting and response generation." },
+  { "id": 9, "name": "Data Analytics: MIS", "description": "Generates MIS reports, dashboards, and performance analytics insights." },
+  { "id": 10, "name": "INDAS", "description": "AI-assisted compliance and accounting analysis support platform." },
+  { "id": 11, "name": "Contract Reader", "description": "Extracts and analyzes contract documents for key clauses and information." },
+  { "id": 12, "name": "Contract Obligation Abstractor", "description": "Identifies contractual obligations and summarizes compliance requirements." },
+  { "id": 13, "name": "Personal Assistance", "description": "AI assistant supporting scheduling, drafting, and internal coordination tasks." },
+  { "id": 14, "name": "Resume Screening", "description": "Automatically screens and evaluates resumes for recruitment teams." },
+  { "id": 15, "name": "Content (CASSE)", "description": "Internal content generation and assessment support platform." },
+  { "id": 16, "name": "VISTA (Training Delivery)", "description": "Supports training execution and learner engagement workflows." },
+  { "id": 17, "name": "Sales Assistant", "description": "Provides sales teams with AI-driven lead insights and structured selling support." },
+  { "id": 18, "name": "Learning Mentor", "description": "AI support tool for learners offering feedback and progress guidance." },
+  { "id": 19, "name": "OCR (Invoice Analysis)", "description": "Extracts structured information from invoices using OCR and AI analysis." }
+]
