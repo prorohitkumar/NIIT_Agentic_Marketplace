@@ -8,6 +8,7 @@ export type Prompt = {
   sourceOutputs: string;
   icon: string;
   tags: string[];
+  industry: string[];
   author?: string;
   rating: number;
   uses: number;

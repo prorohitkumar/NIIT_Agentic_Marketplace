@@ -9,6 +9,7 @@ import type { Prompt } from '@/lib/types/prompt';
 export default function PromptsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null);
   const [prompts, setPrompts] = useState<Prompt[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -45,12 +46,21 @@ export default function PromptsPage() {
   const categories = useMemo(() => {
     return Array.from(new Set(prompts.map(p => p.category))).filter(Boolean).sort();
   }, [prompts]);
+  
+  const industries = useMemo(() => {
+    const allIndustries = prompts.flatMap(p => p.industry || []);
+    return Array.from(new Set(allIndustries)).sort();
+  }, [prompts]);
 
   const filteredPrompts = useMemo(() => {
     let filtered = prompts;
 
     if (selectedCategory) {
       filtered = filtered.filter(p => p.category === selectedCategory);
+    }
+
+    if (selectedIndustry) {
+      filtered = filtered.filter(p => p.industry?.includes(selectedIndustry));
     }
 
     if (searchQuery) {
@@ -63,7 +73,7 @@ export default function PromptsPage() {
     }
 
     return filtered;
-  }, [prompts, searchQuery, selectedCategory]);
+  }, [prompts, searchQuery, selectedCategory, selectedIndustry]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -77,9 +87,10 @@ export default function PromptsPage() {
 
       {/* Filters Section */}
       <section className="w-full px-4 sm:px-6 lg:px-10 xl:px-14 mb-12">
-        {/* Search Bar */}
-        <div className="mb-6">
-          <div className="relative">
+        {/* Filters Section */}
+        <div className="flex flex-col md:flex-row gap-4 mb-6">
+          {/* Search Bar */}
+          <div className="flex-1 relative">
             <Search className="absolute left-4 top-3 w-5 h-5 text-muted-foreground" />
             <input
               type="text"
@@ -88,6 +99,25 @@ export default function PromptsPage() {
               onChange={e => setSearchQuery(e.target.value)}
               className="w-full pl-12 pr-4 py-3 bg-card/70 border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors duration-200"
             />
+          </div>
+          
+          {/* Industry Filter */}
+          <div className="w-full md:w-64 relative">
+            <select
+              value={selectedIndustry ?? ""}
+              onChange={(e) => setSelectedIndustry(e.target.value || null)}
+              className="w-full px-4 py-3 bg-card/70 border border-border rounded-lg text-foreground appearance-none focus:outline-none focus:border-primary/50 transition-colors duration-200"
+            >
+              <option value="">All Industries</option>
+              {industries.map(industry => (
+                <option key={industry} value={industry}>
+                  {industry}
+                </option>
+              ))}
+            </select>
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
           </div>
         </div>
 
@@ -154,6 +184,7 @@ export default function PromptsPage() {
               onClick={() => {
                 setSearchQuery('');
                 setSelectedCategory(null);
+                setSelectedIndustry(null);
               }}
               className="mt-4 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors duration-200"
             >

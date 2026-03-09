@@ -65,7 +65,7 @@ export function PromptCard({ prompt }: PromptCardProps) {
           <div className="flex-1">
             <div className="flex items-start justify-between gap-4 mb-3">
               <div className="flex items-start gap-4 flex-1">
-                <span className="text-2xl leading-none">{prompt.icon}</span>
+                {prompt.icon && <span className="text-2xl leading-none">{prompt.icon}</span>}
                 <div className="flex-1">
                   <h3 className="text-base font-semibold text-foreground mb-1">
                     {prompt.name}
@@ -112,7 +112,7 @@ export function PromptCard({ prompt }: PromptCardProps) {
       <DialogContent className="sm:max-w-2xl max-h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3">
-            <span className="text-2xl leading-none">{prompt.icon}</span>
+            {prompt.icon && <span className="text-2xl leading-none">{prompt.icon}</span>}
             <span>{prompt.name}</span>
           </DialogTitle>
           <DialogDescription>{prompt.description}</DialogDescription>

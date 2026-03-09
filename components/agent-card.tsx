@@ -27,9 +27,11 @@ export function AgentCard({ agent, meta }: AgentCardProps) {
     <div className="glass rounded-lg transition-all duration-300 hover:bg-card/80 p-6 h-full flex flex-col group hover:shadow-lg hover:shadow-black/10">
       <div className="flex items-start justify-between gap-4 mb-3">
         <div className="flex items-start gap-3 flex-1">
-          <div className={`inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${meta.gradient} border border-border`}>
-            <span className="text-xl">{meta.icon}</span>
-          </div>
+          {meta.icon && (
+            <div className={`inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${meta.gradient} border border-border`}>
+              <span className="text-xl">{meta.icon}</span>
+            </div>
+          )}
           <div className="flex-1">
             <h3 className="text-base font-semibold text-foreground">{agent.name}</h3>
             <p className="text-xs text-muted-foreground mt-1">{meta.category}</p>
