@@ -38,7 +38,7 @@ export default async function Home() {
               <div className="flex flex-col sm:flex-row items-center sm:items-start justify-start gap-4">
                 <Link
                   href="/prompts"
-                  className="px-8 py-3 rounded-lg font-semibold transition-all duration-200 text-white bg-gradient-to-r from-primary via-fuchsia-500 to-cyan-400 hover:to-cyan-300 shadow-lg shadow-primary/20"
+                  className="px-8 py-3 rounded-lg font-semibold transition-all duration-200 text-white bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20"
                 >
                   Explore Use Cases
                 </Link>

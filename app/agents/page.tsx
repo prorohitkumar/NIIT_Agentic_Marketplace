@@ -34,24 +34,7 @@ function deriveAgentMeta(name: string, description: string, index: number): Agen
                     ? 'HR'
                     : 'General';
 
-  const icon =
-    category === 'Sales'
-      ? '💼'
-      : category === 'Content'
-        ? '✍️'
-        : category === 'Learning'
-          ? '🎓'
-          : category === 'Compliance'
-            ? '✅'
-            : category === 'Legal'
-              ? '⚖️'
-              : category === 'Analytics'
-                ? '📊'
-                : category === 'Operations'
-                  ? '⚙️'
-                  : category === 'HR'
-                    ? '🧑‍💼'
-                    : '🤖';
+  const icon = '';
 
   const gradient =
     category === 'Sales'
@@ -85,7 +68,6 @@ function deriveAgentMeta(name: string, description: string, index: number): Agen
 export default function AgentsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedBadge, setSelectedBadge] = useState<AgentMeta['badge'] | null>(null);
 
   const agents = getAgents();
 
@@ -104,10 +86,6 @@ export default function AgentsPage() {
       filtered = filtered.filter(x => x.meta.category === selectedCategory);
     }
 
-    if (selectedBadge) {
-      filtered = filtered.filter(x => x.meta.badge === selectedBadge);
-    }
-
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       filtered = filtered.filter(({ agent, meta }) =>
@@ -118,7 +96,7 @@ export default function AgentsPage() {
     }
 
     return filtered;
-  }, [searchQuery, agentWithMeta, selectedCategory, selectedBadge]);
+  }, [searchQuery, agentWithMeta, selectedCategory]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -173,33 +151,6 @@ export default function AgentsPage() {
               </button>
             ))}
           </div>
-
-          {/* Badge filter */}
-          <div className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-1">
-            <button
-              onClick={() => setSelectedBadge(null)}
-              className={`px-4 py-2 rounded-lg transition-all duration-200 ${
-                selectedBadge === null
-                  ? 'bg-muted text-foreground'
-                  : 'bg-muted/50 text-muted-foreground hover:bg-muted'
-              }`}
-            >
-              Any status
-            </button>
-            {(['Trending', 'Just Released', 'Popular', 'Stable'] as const).map(b => (
-              <button
-                key={b}
-                onClick={() => setSelectedBadge(b)}
-                className={`px-4 py-2 rounded-lg transition-all duration-200 ${
-                  selectedBadge === b
-                    ? 'bg-muted text-foreground'
-                    : 'bg-muted/50 text-muted-foreground hover:bg-muted'
-                }`}
-              >
-                {b}
-              </button>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -217,7 +168,6 @@ export default function AgentsPage() {
             <button
               onClick={() => {
                 setSearchQuery('');
-                setSelectedBadge(null);
                 setSelectedCategory(null);
               }}
               className="mt-4 px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg transition-colors duration-200"

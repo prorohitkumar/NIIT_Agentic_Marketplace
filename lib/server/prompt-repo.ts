@@ -43,20 +43,7 @@ function slugifyTag(s: string): string {
 }
 
 function pickIcon(fn: string, industry: string): string {
-  const f = fn.toLowerCase();
-  const i = industry.toLowerCase();
-  if (f.includes('marketing')) return '📣';
-  if (f.includes('sales')) return '🧾';
-  if (f.includes('finance') || f.includes('account')) return '💰';
-  if (f.includes('hr') || f.includes('human')) return '🧑‍💼';
-  if (f.includes('legal')) return '⚖️';
-  if (f.includes('ops') || f.includes('operation')) return '⚙️';
-  if (f.includes('support') || f.includes('service')) return '🎧';
-  if (f.includes('engineering') || f.includes('it')) return '🛠️';
-  if (f.includes('product')) return '🧩';
-  if (i.includes('health')) return '🩺';
-  if (i.includes('education')) return '🎓';
-  return '🧠';
+  return '';
 }
 
 function groupFunctionCategory(raw: string): string {
@@ -96,7 +83,9 @@ function rowToPrompt(row: Record<string, unknown>, index: number): Prompt {
     'sourceOutputs',
   ]);
 
-  const industry = normalizeWhitespace(toText(row['Industry']));
+  const industryRaw = normalizeWhitespace(toText(row['Industry']));
+  const industry = industryRaw ? industryRaw.split(/[,;]/).map(s => s.trim()).filter(Boolean) : [];
+
   const promptType = normalizeWhitespace(toText(row['Prompt Type']));
   const tool = normalizeWhitespace(toText(row['Type Of Tool']));
   const complexity = normalizeWhitespace(toText(row['Complexity']));
@@ -105,7 +94,7 @@ function rowToPrompt(row: Record<string, unknown>, index: number): Prompt {
 
   const tags = Array.from(
     new Set(
-      [functionRaw, industry, promptType, tool, complexity, targetGroup, targetCategory]
+      [functionRaw, industryRaw, promptType, tool, complexity, targetGroup, targetCategory]
         .map(slugifyTag)
         .filter(Boolean)
     )
@@ -121,8 +110,9 @@ function rowToPrompt(row: Record<string, unknown>, index: number): Prompt {
     testPrompt: truncate(testPrompt, 4000),
     dataRequirement: truncate(dataRequirement, 2400),
     sourceOutputs: truncate(sourceOutputs, 2400),
-    icon: pickIcon(category, industry),
+    icon: pickIcon(category, industryRaw),
     tags,
+    industry,
     author,
     rating: 0,
     uses: 0,
